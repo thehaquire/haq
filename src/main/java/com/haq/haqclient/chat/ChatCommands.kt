@@ -22,28 +22,14 @@ class ChatCommands {
             }
         }
     }
-    private var partyMembers = mutableListOf<String>()
-
-    // Method to parse '/p list' output and store member names
-    private fun parseAndStorePartyMembers(listOutput: String) {
-        partyMembers.clear()
-        val regex = Regex("\\[.+?] (\\w+) ●")
-        regex.findAll(listOutput).forEach { match ->
-            partyMembers.add(match.groupValues[1])
-        }
-        for (x in partyMembers) {
-            Sender.send("$x")
-        }
-    }
     private fun cmdRun(ign: String?, command: String?) {
         val firstWord = command?.split(" ")?.getOrNull(0) ?: return
         when (firstWord) {
-            "help" -> rCmd("/pc HaqClient CMDs: ?help, ?pt, ?warp, ?allinv, ?rq, ?rp")
+            "help" -> rCmd("/pc HaqClient CMDs: ?help, ?pt, ?warp, ?allinv, ?rq")
             "pt" -> if (!lock) rCmd("/p transfer " + ign)
             "warp" -> if (!lock) rCmd("/p warp")
             "allinv" -> if (!lock) rCmd("/p settings allinvite")
             "rq" -> if (!lock) rCmd("/instancerequeue")
-            "rp" -> if (!lock) rCmd("/reparty")
             "lock" -> if (lock && ign.equals(Minecraft.getMinecraft().thePlayer.name)) {
                 lock = false
                 rCmd("/pc Unlocked Command Execution")
@@ -53,7 +39,6 @@ class ChatCommands {
             } else {
                 rCmd("/pc You cannot use this command!")
             }
-            "devLISTPARTY" -> parseAndStorePartyMembers()
 
         }
     }
