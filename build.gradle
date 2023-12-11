@@ -29,7 +29,6 @@ archivesBaseName = "modid"
 minecraft {
     version = "1.8.9-11.15.1.2318-1.8.9"
     runDir = "run"
-    
     // the mappings can be changed at any time, and must be in the following format.
     // snapshot_YYYYMMDD   snapshot are built nightly.
     // stable_#            stables are built at the discretion of the MCP team.
@@ -43,6 +42,7 @@ dependencies {
     // you may put jars on which you depend on in ./libs
     // or you may define them like so..
     //compile "some.group:artifact:version:classifier"
+    compile "com.google.code.gson:gson:2.8.9"
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     //compile "some.group:artifact:version"
     // real examples
